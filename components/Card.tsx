@@ -8,12 +8,7 @@ import { truncateText } from "@/utils";
 import { Info } from ".";
 
 const Card = ({ data }: { data: CardDataProps }) => {
-  const {
-    thumbnail,
-    title,
-    description,
-    slug,
-  } = data;
+  const { thumbnail, title, description, slug } = data;
 
   const router = useRouter();
 
@@ -23,8 +18,14 @@ const Card = ({ data }: { data: CardDataProps }) => {
 
   return (
     <div className=" bg-white border border-gray-200 overflow-hidden   ">
-      <div className="h-[140px] overflow-hidden ">
-        <Image src={thumbnail} width={1280} height={580} alt="thumbnail" />
+      <div className="md:h-[140px] h-[160px] overflow-hidden ">
+        <Image
+          src={thumbnail}
+          width={1280}
+          height={580}
+          alt="thumbnail"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <div className="py-5 px-3">

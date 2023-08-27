@@ -1,36 +1,116 @@
+import Cookies from "js-cookie";
+
+import config from "@/constants/config";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 export const blogApi = createApi({
   reducerPath: "blogApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1/blog/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: config.baseUrl + "/blogs" }),
   tagTypes: ["Blog"],
   endpoints: (builder) => ({
     getBlogs: builder.query({
-      query: () => "/",
+      query: () => {
+        const token = Cookies.get("token");
+
+        return {
+          url: "/",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
       providesTags: ["Blog"],
     }),
     getBlogBySlug: builder.query({
-      query: (slug) => `/detail/${slug}`,
+      query: (slug) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: `/detail/${slug}`,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+      providesTags: ["Blog"],
+    }),
+    getBlogByUser: builder.query({
+      query: (id) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: `/profile/${id}`,
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
       providesTags: ["Blog"],
     }),
     getRelatedBlogs: builder.query({
-      query: () => "/related",
+      query: () => {
+        const token = Cookies.get("token");
+
+        return {
+          url: "/related",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
       providesTags: ["Blog"],
     }),
     createBlog: builder.mutation({
-      query: (data) => ({
-        url: "/",
-        method: "POST",
-        body: data,
-      }),
+      query: (data) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: "/",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: data,
+        };
+      },
       invalidatesTags: ["Blog"],
     }),
     likeBlog: builder.mutation({
-      query: (data) => ({
-        url: "/like",
-        method: "POST",
-        body: data,
-      }),
+      query: (slug) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: "/like",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: {
+            slug,
+          },
+        };
+      },
+      invalidatesTags: ["Blog"],
+    }),
+    dislikeBlog: builder.mutation({
+      query: (slug) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: "/dislike",
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: {
+            slug,
+          },
+        };
+      },
       invalidatesTags: ["Blog"],
     }),
   }),
@@ -38,8 +118,10 @@ export const blogApi = createApi({
 
 export const {
   useGetBlogsQuery,
+  useGetBlogByUserQuery,
   useCreateBlogMutation,
   useGetBlogBySlugQuery,
   useGetRelatedBlogsQuery,
-  useLikeBlogMutation
+  useLikeBlogMutation,
+  useDislikeBlogMutation,
 } = blogApi;

@@ -26,7 +26,7 @@ const Page = () => {
 
     const { data }: any = await login(user);
 
-    if (data.success) {
+    if (data?.success) {
       toast.success(data?.message);
       dispatch(addUser(data));
 
@@ -34,7 +34,7 @@ const Page = () => {
         router.push("/");
       }, 1000);
     } else {
-      toast.error("login fail");
+      toast.error("email or password wrong");
     }
   };
 

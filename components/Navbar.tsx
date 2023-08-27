@@ -10,20 +10,20 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState<boolean>(false);
 
   return (
-    <nav className="w-full md:static fixed top-0 left-0">
+    <nav className="w-full md:static fixed top-0 left-0 z-10 ">
       <div
         className=" max-w-[1024px] mx-auto bg-white flex items-center justify-between h-[60px] sm:px-4 px-2 
       z-10"
       >
         <Link href="/" className="flex items-center">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8 mr-3"
+            src="https://i.postimg.cc/L510bqhM/41-logo.png"
+            className="h-[80px] mr-3"
             alt="Flowbite Logo"
           />
-          <span className="self-center text-xl font-semibold whitespace-nowrap text-black sm:block hidden">
-            Next Blog
-          </span>
+          {/* <span className="self-center text-xl font-semibold whitespace-nowrap text-black sm:block hidden">
+            SnapByte
+          </span> */}
         </Link>
 
         <div

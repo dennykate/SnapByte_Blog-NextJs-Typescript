@@ -17,7 +17,15 @@ const nextConfig = {
         hostname: "firebasestorage.googleapis.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
+        port: "",
+      },
     ],
+  },
+  experimental: {
+    appDir: true,
   },
 };
 

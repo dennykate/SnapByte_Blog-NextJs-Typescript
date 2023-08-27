@@ -1,14 +1,14 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 import { navItems } from "@/constants";
-import { NavItemsProps, NavItemProps } from "@/types";
-import { logout } from "@/utils";
+import { NavItemsProps, NavItemProps, UserInfoProps } from "@/types";
 
 const NavItems = ({ column }: NavItemsProps) => {
+  const user: UserInfoProps = JSON.parse(Cookies.get("user") ?? "{}");
+
   const router = useRouter();
-  const dispatch = useDispatch();
 
   return (
     <ul
@@ -27,14 +27,14 @@ const NavItems = ({ column }: NavItemsProps) => {
           </button>
         </li>
       ))}
-      
+
       <li>
         <button
-          onClick={() => logout(router, dispatch)}
-          className="block py-2 pl-3 pr-4  text-black hover:text-blue-700 hover:underline"
+          onClick={() => router.push(`/profile/${user.id}`)}
+          className="block py-2 pl-3 text-black hover:text-blue-700 hover:underline"
           aria-current="page"
         >
-          Logout
+          Profile
         </button>
       </li>
     </ul>

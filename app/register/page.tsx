@@ -29,16 +29,16 @@ const Page = () => {
 
     const user = { name, email, password, password_confirmation, profile };
 
-    try {
-      const { data }: any = await register(user);
+    const { data, error }: any = await register(user);
 
-      if (data.success) {
-        toast.success(data.message);
-        setTimeout(() => {
-          router.push("/login");
-        }, 1000);
-      }
-    } catch (error) {
+    console.log(error);
+
+    if (data?.success) {
+      toast.success(data.message);
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
+    } else {
       toast.error("register fail");
     }
   };

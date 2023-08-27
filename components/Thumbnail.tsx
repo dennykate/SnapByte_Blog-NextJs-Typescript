@@ -3,6 +3,7 @@ import React from "react";
 
 import { ThumbnailType } from "@/types";
 import { uploadImage } from "@/utils";
+import { HiOutlinePhoto } from "react-icons/hi2";
 
 const Thumbnail = ({ thumbnail, setThumbnail }: ThumbnailType) => {
   const onChangeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,14 +17,12 @@ const Thumbnail = ({ thumbnail, setThumbnail }: ThumbnailType) => {
   };
 
   return (
-    <div className="w-1/2">
-      <div className="w-full min-h-[300px] flex-1 border-[1px] border-black border-dashed p-3 ">
+    <div className="md:w-1/2 w-full">
+      <div className="w-full h-auto py-[10px] flex-1 border-[1px] border-black border-dashed p-3 ">
         {thumbnail == "" ? (
           <label htmlFor="thumbnail">
-            <div className="w-full min-h-[280px] bg-gray-200 flex flex-col justify-center items-center cursor-pointer relative">
-              <h1 className="text-2xl font-bold text-black text-center">
-                Click here to add blog's thumbnail
-              </h1>
+            <div className="w-full md:min-h-[280px] min-h-[240px] bg-gray-200 flex flex-col justify-center items-center cursor-pointer relative -z-10">
+              <HiOutlinePhoto className="md:text-[80px] text-[60px] text-gray-800" />
               <input
                 onChange={onChangeHandler}
                 type="file"

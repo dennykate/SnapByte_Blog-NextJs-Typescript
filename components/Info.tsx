@@ -1,20 +1,29 @@
 import Image from "next/image";
 import React from "react";
 import { AiOutlineEye, AiOutlineLike } from "react-icons/ai";
-import Cookies from "js-cookie";
+import { BiLike } from "react-icons/bi";
+import { HiThumbUp } from "react-icons/hi";
 
 import { CardDataProps, UserInfoProps } from "@/types";
-import { BiLike } from "react-icons/bi";
-import { useLikeBlogMutation } from "@/redux/api/blogApi";
+import {
+  useDislikeBlogMutation,
+  useLikeBlogMutation,
+} from "@/redux/api/blogApi";
 
 const Info = ({ data }: { data: CardDataProps }) => {
   const [likeBlog] = useLikeBlogMutation();
+  const [dislikeBlog] = useDislikeBlogMutation();
 
-  const user = JSON.parse(Cookies.get("user") ?? "{}");
-  const { upload_by, created_at, views, likes, slug } = data;
+  const { upload_by, created_at, views, likes, slug, isLikedUser } = data;
 
   const onLikeClickHandler = async () => {
-    await likeBlog({ slug, user });
+    if (isLikedUser) {
+      console.log("dislike");
+      await dislikeBlog(slug);
+    } else {
+      console.log("like");
+      await likeBlog(slug);
+    }
   };
 
   return (
@@ -50,9 +59,13 @@ const Info = ({ data }: { data: CardDataProps }) => {
         </div>
         <button
           onClick={onLikeClickHandler}
-          className="flex items-center gap-[2px] text-gray-800 cursor-pointer group"
+          className="flex items-center gap-[2px] text-gray-800 cursor-pointer group "
         >
-          <BiLike className=" text-base animate-bounce group-hover:animate-none group-hover:text-blue-700" />
+          {isLikedUser ? (
+            <HiThumbUp className=" text-base  text-blue-700" />
+          ) : (
+            <BiLike className=" text-base group-hover:animate-none animate-bounce group-hover:text-blue-700" />
+          )}
           <p className="text-xs font-[400]">{likes ? likes : 0}</p>
         </button>
       </div>

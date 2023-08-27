@@ -8,10 +8,10 @@ import { GuardProps } from "@/types";
 
 const Guard = ({ children }: GuardProps) => {
   const router = useRouter();
-  const user = Cookies.get("user");
+  const token = Cookies.get("token");
 
   useEffect(() => {
-    if (user == undefined) router.push("/login");
+    if (token == undefined) router.push("/login");
   }, []);
 
   return children;

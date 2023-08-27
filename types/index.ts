@@ -9,6 +9,7 @@ export interface UserInfoProps {
   profile: string;
   name: string;
   email: string;
+  id: string;
 }
 
 export interface CardDataProps {
@@ -20,6 +21,7 @@ export interface CardDataProps {
   created_at: string;
   views?: number;
   likes?: number;
+  isLikedUser: boolean;
 }
 
 export interface InputProps {
@@ -36,6 +38,7 @@ export interface FileInputProps {
 
 export interface GuardProps {
   children: ReactNode;
+  name?: string;
 }
 
 export interface NavItemsProps {
@@ -44,6 +47,7 @@ export interface NavItemsProps {
 
 export interface LayoutProps {
   children: ReactNode;
+  profile?: boolean;
 }
 
 export interface ThumbnailType {
