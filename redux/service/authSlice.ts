@@ -19,7 +19,10 @@ export const authSlice = createSlice({
       Cookie.set("user", JSON.stringify(payload.user));
       Cookie.set("token", payload.token);
     },
-    removeUser: (state, { payload }) => {
+    removeUser: (state) => {
+      state.user = null;
+      state.token = null;
+
       Cookie.remove("user");
       Cookie.remove("token");
     },
