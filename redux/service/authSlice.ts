@@ -1,5 +1,3 @@
-"use client";
-
 import { createSlice } from "@reduxjs/toolkit";
 import Cookie from "js-cookie";
 
