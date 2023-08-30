@@ -16,8 +16,8 @@ const Page = () => {
   const router = useRouter();
   const [login, { isLoading }] = useLoginMutation();
 
-  const [email, setEmail] = useState<string>("tth@gmail.com");
-  const [password, setPassword] = useState<string>("11223344");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
