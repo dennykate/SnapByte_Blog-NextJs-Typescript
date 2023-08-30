@@ -12,8 +12,9 @@ import RelatedBlogs from "./RelatedBlogs";
 import Info from "./Info";
 import ProfileHead from "./ProfileHead";
 import Footer from "./Footer";
-import Empty from "./Empty"
-import Loading from "./Loading"
+import Empty from "./Empty";
+import Loading from "./Loading";
+import Main from "./Main";
 
 export {
   Navbar,
@@ -32,5 +33,5 @@ export {
   Loading,
   Footer,
   Empty,
-  
+  Main
 };

@@ -1,16 +1,17 @@
-"use client";
-
+import type { Metadata } from "next";
 
 import { Inter } from "next/font/google";
-import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import { Main } from "@/components";
 
-import { store } from "@/redux/store";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
+export const metadata: Metadata = {
+  title: "Snap Byte | Blog",
+  description: "sharing yours with me",
+};
 
 export default function RootLayout({
   children,
@@ -18,13 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Provider store={store}>
+    <Main>
       <html lang="en">
         <body suppressHydrationWarning className={inter.className}>
           {children}
           <Toaster position="bottom-center" />
         </body>
       </html>
-    </Provider>
+    </Main>
   );
 }
