@@ -56,7 +56,7 @@ const Page = () => {
             <Input
               type="password"
               label="Your Password"
-              placeholder="user12345"
+              placeholder="12345"
               value={password}
               setValue={setPassword}
             />
