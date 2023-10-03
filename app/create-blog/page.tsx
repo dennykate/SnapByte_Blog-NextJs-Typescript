@@ -40,6 +40,7 @@ const page = () => {
       }, 1000);
     } else {
       toast.error("Fail to create");
+      
       logout(router, dispatch);
     }
   };
