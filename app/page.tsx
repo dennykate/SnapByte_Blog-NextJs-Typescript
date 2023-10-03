@@ -14,7 +14,9 @@ export default function Page() {
   const dispatch = useDispatch();
   const { data, error, isLoading } = useGetBlogsQuery(null);
 
-  if (error && !isLoading) {
+  console.log({ error, isLoading });
+
+  if (error) {
     logout(router, dispatch);
   }
 
