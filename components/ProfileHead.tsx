@@ -42,7 +42,7 @@ const ProfileHead = () => {
 
           <button
             onClick={() => logout(router, dispatch)}
-            className="px-[16px] py-[5px] bg-red-500 text-white text-base font-[600] hover:bg-white
+            className="px-[16px] py-[5px] create text-base font-[600] hover:bg-white
            hover:text-red-500 border border-red-500 "
           >
             Logout

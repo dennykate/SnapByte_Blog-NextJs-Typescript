@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "loremflickr.com",
+        hostname: "source.unsplash.com",
         port: "",
       },
     ],

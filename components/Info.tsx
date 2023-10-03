@@ -9,6 +9,7 @@ import {
   useDislikeBlogMutation,
   useLikeBlogMutation,
 } from "@/redux/api/blogApi";
+import Link from "next/link";
 
 const Info = ({ data }: { data: CardDataProps }) => {
   const [likeBlog] = useLikeBlogMutation();
@@ -35,7 +36,10 @@ const Info = ({ data }: { data: CardDataProps }) => {
           </p>
         </div>
 
-        <div className="flex items-center justify-end gap-[3px] w-[30%]">
+        <Link
+          href={`/profile/${upload_by?.id}`}
+          className="flex items-center justify-end gap-[3px] w-[30%]"
+        >
           <div className="min-w-[20px] h-[20px] rounded-full overflow-hidden">
             <Image
               priority
@@ -49,7 +53,7 @@ const Info = ({ data }: { data: CardDataProps }) => {
           <p className="text-xs font-bold truncate text-gray-800">
             {upload_by.name}
           </p>
-        </div>
+        </Link>
       </div>
 
       <div className="flex items-center justify-end w-full gap-4">

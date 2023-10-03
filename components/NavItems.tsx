@@ -20,7 +20,7 @@ const NavItems = ({ column }: NavItemsProps) => {
         <li key={index}>
           <button
             onClick={() => router.push(path)}
-            className="block py-2 pl-3 pr-4  text-black hover:text-blue-700 hover:underline"
+            className="block py-2 pl-3 pr-4  text-black sm:hover:text-blue-700    hover:underline"
             aria-current="page"
           >
             {title}
@@ -31,7 +31,7 @@ const NavItems = ({ column }: NavItemsProps) => {
       <li>
         <button
           onClick={() => router.push(`/profile/${user.id}`)}
-          className="block py-2 pl-3 text-black hover:text-blue-700 hover:underline"
+          className="block py-2 pl-3 text-black sm:hover:text-blue-700 hover:underline"
           aria-current="page"
         >
           Profile

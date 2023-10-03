@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+// import "sweetalert2/src/sweetalert2.scss";
 import { Main } from "@/components";
 
 import "./globals.css";

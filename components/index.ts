@@ -15,6 +15,7 @@ import Footer from "./Footer";
 import Empty from "./Empty";
 import Loading from "./Loading";
 import Main from "./Main";
+import AuthGuard from "./AuthGuard";
 
 export {
   Navbar,
@@ -33,5 +34,6 @@ export {
   Loading,
   Footer,
   Empty,
-  Main
+  Main,
+  AuthGuard,
 };

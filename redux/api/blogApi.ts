@@ -22,6 +22,7 @@ export const blogApi = createApi({
       },
       providesTags: ["Blog"],
     }),
+
     getBlogBySlug: builder.query({
       query: (slug) => {
         const token = Cookies.get("token");
@@ -79,6 +80,20 @@ export const blogApi = createApi({
       },
       invalidatesTags: ["Blog"],
     }),
+    deleteBlog: builder.mutation({
+      query: (id) => {
+        const token = Cookies.get("token");
+
+        return {
+          url: `/${id}`,
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+      invalidatesTags: ["Blog"],
+    }),
     likeBlog: builder.mutation({
       query: (slug) => {
         const token = Cookies.get("token");
@@ -120,6 +135,7 @@ export const {
   useGetBlogsQuery,
   useGetBlogByUserQuery,
   useCreateBlogMutation,
+  useDeleteBlogMutation,
   useGetBlogBySlugQuery,
   useGetRelatedBlogsQuery,
   useLikeBlogMutation,

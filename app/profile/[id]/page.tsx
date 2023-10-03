@@ -21,7 +21,7 @@ const page = ({ params: { id } }: { params: { id: string } }) => {
                 alt="cover-photo"
                 width={1024}
                 height={512}
-                src={"https://loremflickr.com/g/1024/512/all"}
+                src={"https://source.unsplash.com/random"}
                 className="w-full h-full object-cover"
               />
             </div>

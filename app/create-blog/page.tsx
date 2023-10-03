@@ -9,9 +9,13 @@ import { BiLoaderAlt } from "react-icons/bi";
 import { Input, Layout, Textarea, Thumbnail } from "@/components";
 import { useCreateBlogMutation } from "@/redux/api/blogApi";
 import Loading from "./loading";
+import { totalmem } from "os";
+import { logout } from "@/utils";
+import { useDispatch } from "react-redux";
 
 const page = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [thumbnail, setThumbnail] = useState<string>("");
   const [title, setTitle] = useState<string>("");
@@ -29,22 +33,22 @@ const page = () => {
 
     const { data, error }: any = await createBlog(blog);
 
-    console.log(data);
-    console.log(error);
-
     if (data?.success) {
       toast.success(data.message);
       setTimeout(() => {
         router.push("/");
       }, 1000);
+    } else {
+      toast.error("Fail to create");
+      logout(router, dispatch);
     }
   };
 
   return (
     <Suspense fallback={<Loading />}>
       <Layout>
-        <div className="w-full flex justify-center items-start py-5 ">
-          <div className="w-full flex md:flex-row flex-col gap-5 sm:px-2 px-1">
+        <div className="w-full flex justify-center items-start py-5 px-2">
+          <div className="w-full flex md:flex-row flex-col gap-5 sm:px-2 px-1\">
             <Thumbnail thumbnail={thumbnail} setThumbnail={setThumbnail} />
             <form onSubmit={onSubmitHandler} className="md:w-1/2 w-full">
               <div className="w-full flex flex-col items-start">

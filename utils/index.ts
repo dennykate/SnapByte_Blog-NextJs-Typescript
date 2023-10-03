@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { storage } from "@/firebase/config";
 import { removeUser } from "@/redux/service/authSlice";
+import Swal from "sweetalert2";
 
 export const truncateText = (text: string, limit: number) => {
   const truncatedText =
@@ -19,8 +20,6 @@ export const convertLabelToId = (label: string) => {
 };
 
 export const logout = (router: AppRouterInstance, dispatch: Dispatch) => {
-  console.log("logout");
-
   dispatch(removeUser());
 
   router.push("/login");
@@ -49,5 +48,24 @@ export const uploadImage = (file: File) => {
     return getDownloadURL(snapshot.ref).then((url: string) => {
       return url;
     });
+  });
+};
+
+export const deleteAlert = async (callback: () => Promise<any>) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      callback().then((data: any) => {
+        console.log(data);
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      });
+    }
   });
 };
